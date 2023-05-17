@@ -16,21 +16,22 @@ def get_birthdays_per_week(users):
 
     for ch in users:
         for name, date in ch.items():
-            difference = date - current_datetime
+            new_datetime = datetime(year=current_datetime.year, month=date.month, day=date.day).date()
+            difference = new_datetime - current_datetime
             if 0 < difference.days <= 7:
-                if date.weekday() in [0, 5, 6]:
+                if new_datetime.weekday() in [0, 5, 6]:
                     monday += f" {name},"
                     count_monday += 1
-                elif date.weekday() == 1:
+                elif new_datetime.weekday() == 1:
                     tuesday += f" {name},"
                     count_tuesday += 1
-                elif date.weekday() == 2:
+                elif new_datetime.weekday() == 2:
                     wednesday += f" {name},"
                     count_wednesday += 1
-                elif date.weekday() == 3:
+                elif new_datetime.weekday() == 3:
                     thursday += f" {name},"
                     count_thursday += 1
-                elif date.weekday() == 4:
+                elif new_datetime.weekday() == 4:
                     friday += f" {name},"
                     count_friday += 1
 
@@ -46,10 +47,10 @@ def get_birthdays_per_week(users):
         print(friday.rstrip(","))
     
 users = [
-    {"Bill": datetime(year=2023, month=5, day=20).date()}, 
-    {"Jill": datetime(year=2023, month=5, day=22).date()},
-    {"Kim": datetime(year=2023, month=5, day=19).date()},
-    {"Jan": datetime(year=2023, month=5, day=23).date()}
+    {"Bill": datetime(year=1986, month=5, day=20).date()}, 
+    {"Jill": datetime(year=1993, month=5, day=22).date()},
+    {"Kim": datetime(year=1975, month=5, day=19).date()},
+    {"Jan": datetime(year=1969, month=5, day=23).date()}
     ]
 
 get_birthdays_per_week(users)
