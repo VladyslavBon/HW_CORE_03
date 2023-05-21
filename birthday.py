@@ -16,7 +16,7 @@ def get_birthdays_per_week(users):
 
     for ch in users:
         for name, date in ch.items():
-            new_datetime = datetime(year=current_datetime.year, month=date.month, day=date.day).date()
+            new_datetime = date.replace(year=current_datetime.year).date()
             difference = new_datetime - current_datetime
             if 0 < difference.days <= 7:
                 if new_datetime.weekday() in [0, 5, 6]:
@@ -47,10 +47,10 @@ def get_birthdays_per_week(users):
         print(friday.rstrip(","))
     
 users = [
-    {"Bill": datetime(year=1986, month=5, day=20).date()}, 
-    {"Jill": datetime(year=1993, month=5, day=22).date()},
-    {"Kim": datetime(year=1975, month=5, day=19).date()},
-    {"Jan": datetime(year=1969, month=5, day=23).date()}
+    {"Bill": datetime(year=1986, month=5, day=17)}, 
+    {"Jill": datetime(year=1993, month=5, day=17)},
+    {"Kim": datetime(year=1975, month=5, day=17)},
+    {"Jan": datetime(year=1969, month=5, day=17)}
     ]
 
 get_birthdays_per_week(users)
